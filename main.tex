@@ -1,0 +1,136 @@
+\documentclass{jfm}
+\usepackage{graphicx}
+\usepackage{epstopdf, epsfig}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+
+\shorttitle{Nonlinear plane-wave}
+\shortauthor{J. J. Early and M. P. Lelong}
+% \shortauthor{J. J. Early, M. P. Lelong, K. S. Smith, and B. R. Sutherland}
+
+\title{Guidelines for authors and submission template}
+
+\author{J. J. Early\aff{1}
+  \corresp{\email{jearly@nwra.com}} and
+  M. P. LeLong\aff{1} }
+%   ,
+%   K. S. Smith\aff{2}
+%  \and B. R. Sutherland\aff{2}}
+
+\affiliation{\aff{1}NorthWest Research Associates, 4118 148th Ave NE, Redmond, WA 98052}
+% \aff{2}Center for Atmosphere Ocean Science, Courant Institute of Mathematical Sciences, New York University, 251 Mercer St., New York, NY 10012}
+
+
+
+\title{Eulerian and Lagrangian internal wave solutions to the nonlinear Boussinesq equations}
+
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The single-mode plane-wave is an exact solution to the nonlinear Boussinesq equations with constant stratification and we show that the corresponding Lagrangian solution can also computed to quadrature. The Lagrangian solution is shown to have a frequency of oscillation that differs from the Eulerian solution. The results are extended to non-constant stratification and we show that both the Eulerian and Lagrangian solutions hold in numerical simulations. Finally, we show that a realistic pycnocline from the ocean can significantly enhance the Stokes drift.
+\end{abstract}
+
+\begin{keywords}
+internal waves, stokes drift, Eulerian, Lagrangian
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\section{Introduction}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The primary goal of this paper is to understand particle transport by internal waves for realistic stratification profiles in the ocean. Such calculations are necessary for estimating the diffusivity by internal waves \citep{holmescerfon2011-jfm}, but particle transport is a second order effect, the magnitude of which can change dramatically after careful consideration of higher order terms with rotation. The approach taken here attempts to avoid these complications by considering only a single-mode plane-wave in a Boussinesq system without rotation. The solution is exact for constant stratification, and the resulting Lagrangian solution is therefore unambiguous, with no correction terms possible at higher orders. The solution in non-constant stratification does include a correction term to the Eulerian solution \citep{thorpe1968}, but we show that it does not affect the particle transport properties of the solution. The leading order Stokes drift estimates are therefore accurate in variable stratification, and we show that the presence of a pycnocline can dramatically enhance the Stokes drift.
+
+That the single-mode plane-wave in constant stratification is an exact solution to the nonlinear Boussinesq equations appears to be one of those elusive facts that practitioners take for granted, but cannot pinpoint the source of that knowledge. In \citet{thorpe1968} he notes that the second-order contribution to the velocity streamfunction vanishes, but then adds a nonzero contribution to buoyancy at that same order. The solution is correct at the order of expansion given, but no longer an exact solution to the nonlinear equations of motion. When \citet{Sanderson1985-jfm} computed the Lagrangian solution for this system, he compared his asymptotic solution to that of \citet{thorpe1968}. \citet{diamessis2014-dao} point to \citet{tabaei2005-jfm} as a nominee for the first published manuscript to plainly state this fact, although it is certainly possible (and even likely) that it has been noted elsewhere.
+
+In what follows, we show the exact Eulerian and Lagrangian solution, but also an approximation to the Lagrangian solution at a higher order than previously computed. The motivation for computing the higher order Lagrangian solution is to resolve a discrepancy that occurs when considering the lowest order Stokes drift term, namely that conservation of density appears to be violated. Stokes drift is often defined as the difference between the Eulerian and Lagrangian solution, $u_L = u_E + u_S$. The Lagrangian particles for single-mode plane-wave with period $T$ appears to have a modified amplitude...
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\section{Equations of motion}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We start with a review of the single-mode plane wave solution to the two-dimensional Boussinesq approximated equations of motion to establish notation. This solution is then used as the $O(1)$ solution in an asymptotic expansion to find higher order correction terms to this Eulerian solution.
+
+The equations of motion for fluid velocity $u(x,z,t)$ and $w(x,z,t)$ are given by,
+\begin{eqnarray}
+\label{x-momentum-bq}
+u_t +u u_x + w u_z&=& - \frac{1}{\rho_0} p_x \\ \label {z-momentum-bq}
+w_t +u w_x + w w_z &=& - \frac{1}{\rho_0} p_z - g \frac{\rho}{\rho_0} \\ \label{continuity-bq}
+u_x + w_z &=& 0 \\ \label{thermodynamic-bq}
+\rho_t + u \rho_x + w \rho_z + w \bar{\rho}_z &=& 0
+\end{eqnarray}
+where $p(x,z,t)$ and $\rho(x,z,t)$ are the perturbation pressure and density, respectively. These are defined such that $p_{\textrm{tot}}(x,z,t) = p(x,z,t) + p_0(z)$ and $\rho_{\textrm{tot}}(x,z,t) = \rho_0 + \bar{\rho}(z) + \rho(x,z,t) $ where $\partial_z p_0(z) = -g \bar{\rho}(z)$. All variables in the equations of motion are functions of $x$, $z$ and $t$, other than $\bar{\rho}$ which is strictly a function of $z$. We use the usual definition of the buoyancy frequency $N^2(z) \equiv -\frac{g}{\rho_0} \frac{\partial \bar{\rho}}{\partial z}$.
+
+There are two linearly independent wave solutions to the linearized versions of equations \ref{x-momentum-bq}-\ref{thermodynamic-bq}, assuming periodic horizontal boundary conditions and a flat bottom. The positive frequency wave solution, given in any number of standard texts, e.g., \citet{cushman2011-book}, is
+\begin{equation}
+\label{positive_wave_solution}
+\left[\begin{array}{c} p \\ u  \\ w  \\ \rho  \end{array}\right] =
+U \left[\begin{array}{c}
+- \rho_0 g \frac{k h}{\omega} \cos \theta F(z)\\
+	 \cos \theta F(z) \\
+    k h \sin \theta  G(z) \\
+	\frac{\partial \bar{\rho}}{\partial z} \frac{k h}{\omega} \cos \theta G(z)
+ \end{array}\right]
+\end{equation}
+where the frequency is $\omega = \sqrt{g h k^2}$, and the negative rotating wave solution is found by flipping the sign on the frequency, $\omega \mapsto -\omega$. The horizontal phase is given by $\theta=k x + \omega t$. The eigenvalue $h$ can be replaced in favor of eigenfrequency $\omega$ using the dispersion relation, but here we include both to avoid singularities at $k=0$ and for notational compactness. 
+
+The vertical structure function $G(z)$ is found for fixed $\omega$ using,
+\begin{equation}
+\label{vertical-eigenvalue-G-with-omega}
+\partial_{zz} G_j = -\frac{N^2-\omega^2}{g h_j }G_j
+\end{equation}
+or found for fixed $k$ using,
+\begin{equation}
+\label{vertical-eigenvalue-G-with-K}
+\partial_{zz}G_j - k^2 G_j = -\frac{N^2}{g h_j }G_j.
+\end{equation}
+The vertical mode $F$ is related by $F(z) = h \partial_z G(z)$. The solution in equation \ref{positive_wave_solution} assumes we have chosen a particular vertical mode $j$ for $(h,F,G)$ and that $F$ is normalized such that $\max{F(z)}=1$ in order that $U$ be the maximum fluid velocity at time $t=0$.
+
+For mathematical convenience we define a stream function $u=\psi_z$ and $w=-\psi_x$ that automatically enforces the continuity, and reduces the equations of motion to two prognostic equations,
+\begin{eqnarray}
+\label{streamfunction_equation}
+\nabla^2 \psi_t +  J\left( \psi, \nabla^2 \psi \right) &=& \frac{g}{\rho_0}\rho_x \\ \label{rho_equation}
+\rho_t + J\left( \psi, \rho \right) - \psi_x \bar{\rho}_z &=& 0
+\end{eqnarray}
+and one diagnostic equation,
+\begin{equation}
+\frac{1}{\rho_0} \nabla^2 p = -\left( 2 \psi_{xz}^2 - 2 \psi_{xx}\psi_{zz} \right) - \frac{g}{\rho_0} \rho_z
+\end{equation}
+where $J(a,b) \equiv a_x b_z - a_z b_x$. The linear solution written as a stream function is
+\begin{equation}
+\label{linear_streamfunction}
+\psi(x,z,t) = U h \cos \theta G(z).
+\end{equation}
+
+Using the linear solution as a guide, we take the ratio of the fluid velocity to phase speed to be a small parameter, $\epsilon = \frac{U k}{\omega}$. Combining equations \ref{streamfunction_equation} and \ref{rho_equation}, we have that
+\begin{equation}
+\nabla^2 \psi_{tt} + N^2 \psi_{xx} + f_0^2 \psi_{zz} = - \partial_t J\left(\nabla^2 \psi, \psi \right) - \frac{g}{\rho_0} \partial_x J\left(\rho, \psi \right)
+\end{equation}
+where the $O(1)$ terms are on the left-hand side and the $O(\epsilon)$ are on the right-hand side. Expanding $\psi = \psi^{(0)} + \epsilon \psi^{(1)} + O(\epsilon^2)$, where the linear stream function in equation \ref{linear_streamfunction} is taken to be $\psi^{(0)}$, the equation governing $\psi^{(1)}$ is
+\begin{equation}
+\nabla^2 \psi^{(1)}_{tt} + N^2 \psi^{(1)}_{xx} = \frac{U^2 h^2 k^3}{\omega} \cos (2 \theta) (N^2)_z G^2(z).
+\end{equation}
+The particular solution can be found taking $\psi^{(1)}=\frac{U^2 kh}{4\omega g}\cos 2\theta \Gamma(z)$, which requires that,
+\begin{equation}
+\label{vertical-equation}
+\left((2k)^2-\frac{N^2}{gh}\right) \Gamma - \Gamma_{zz} = (N^2)_z G^2.
+\end{equation}
+The solution to equation \ref{vertical-equation} is found by projecting $\Gamma(z)$ onto the eigenmodes of equation \ref{vertical-eigenvalue-G-with-K} with fixed wavenumber $2k$. Note that equation \ref{vertical-equation} can be written in terms of doubled frequency $2 \omega$, but the eigenmodes of equation \ref{vertical-eigenvalue-G-with-omega} will not form a complete basis if $2\omega$ exceeds $N(z)$. We let $\Gamma(z) = \sum_{j=1} \gamma_j \tilde{G}^{2k}_j$ where $\tilde{G}^{2k}_j$ denotes the eigenmodes of equation \ref{vertical-eigenvalue-G-with-K} with $k \mapsto 2k$, normalized such that $\frac{1}{g}\int N^2 \tilde{G}^{2k}_i \tilde{G}^{2k}_j \, dz= \delta_{ij}$. Using this in equation \ref{vertical-equation}, we find that
+\begin{equation}
+\gamma_j = \frac{h h_j}{h-h_j}\int_{-D}^0 \left[ (N^2)_z G^2 \right] \tilde{G}^{2k}_j\, dz
+\end{equation}
+where the eigenvalue $h_j$ corresponds to eigenfunction $\tilde{G}^{2k}_j$.
+
+\bibliographystyle{jfm}
+\bibliography{references}
+
+\end{document}
+
+
+
